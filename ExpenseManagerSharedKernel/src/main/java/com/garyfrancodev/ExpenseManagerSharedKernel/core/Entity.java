@@ -30,4 +30,8 @@ public abstract class Entity {
             throw new BusinessRuleValidationException(rule);
         }
     }
+
+    public UUID getId() {
+        return id;
+    }
 }

@@ -34,6 +34,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>net.sizovs</groupId>
+			<artifactId>pipelinr</artifactId>
+			<version>0.8</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.garyfrancodev</groupId>
 			<artifactId>ExpenseManagerSharedKernel</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @Tag(name = "User Controller")
 @CrossOrigin(origins = "*")
 @RestController
@@ -19,11 +21,9 @@ public class UserController {
     private Pipeline pipeline;
 
     @PostMapping()
-    public String createUser(@RequestBody CreateUserDto createUserDto) {
+    public UUID createUser(@RequestBody CreateUserDto createUserDto) {
         CreateUserCommand createUserCommand = new CreateUserCommand(createUserDto);
-        pipeline.send(createUserCommand);
-        logger.info("Oki");
-        return "asd";
+        return createUserCommand.execute(pipeline);
     }
 
     @GetMapping()

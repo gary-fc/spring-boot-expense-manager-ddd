@@ -38,6 +38,12 @@
 			<artifactId>pipelinr</artifactId>
 			<version>0.8</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.garyfrancodev</groupId>
+			<artifactId>ExpenseManagerDomain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

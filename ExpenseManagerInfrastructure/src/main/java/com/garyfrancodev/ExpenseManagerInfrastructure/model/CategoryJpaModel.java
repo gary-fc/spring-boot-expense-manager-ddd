@@ -1,6 +1,9 @@
 package com.garyfrancodev.ExpenseManagerInfrastructure.model;
 
+import com.garyfrancodev.ExpenseManagerDomain.enums.CategoryType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
@@ -20,8 +23,20 @@ public class CategoryJpaModel {
     @Column
     private String categoryDescription;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private CategoryType categoryType;
+
     @ManyToOne
     private UserJpaModel user;
+
+    public CategoryType getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryType categoryType) {
+        this.categoryType = categoryType;
+    }
 
     public UUID getId() {
         return id;

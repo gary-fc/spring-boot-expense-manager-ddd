@@ -27,7 +27,7 @@ public class UserJpaModel {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryJpaModel> categories = new ArrayList<>();
 
     public UserJpaModel() {
