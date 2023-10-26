@@ -2,14 +2,17 @@ package com.garyfrancodev.ExpenseManagerInfrastructure.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "user")
-public class UserJpaModel {
+public class UserJpaModel implements UserDetails {
 
     @Id
     @Column(nullable = false)
@@ -28,7 +31,10 @@ public class UserJpaModel {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CategoryJpaModel> categories = new ArrayList<>();
+    private List<CategoryJpaModel> categories;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AccountJpaModel> accounts;
 
     public UserJpaModel() {
     }
@@ -73,11 +79,33 @@ public class UserJpaModel {
         this.password = password;
     }
 
-    public List<CategoryJpaModel> getCategories() {
-        return categories;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public void setCategories(List<CategoryJpaModel> categories) {
-        this.categories = categories;
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

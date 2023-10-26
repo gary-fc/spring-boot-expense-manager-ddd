@@ -1,18 +1,20 @@
 package com.garyfrancodev.ExpenseManagerDomain.events;
 
 import an.awesome.pipelinr.Notification;
-import com.garyfrancodev.ExpenseManagerDomain.model.User;
 import com.garyfrancodev.ExpenseManagerSharedKernel.core.DomainEvent;
 
-public class CreatedUserEvent extends DomainEvent implements Notification {
-    private User user;
+import java.util.Date;
+import java.util.UUID;
 
-    public CreatedUserEvent(User user) {
-        super(user.getDate());
-        this.user = user;
+public class CreatedUserEvent extends DomainEvent implements Notification {
+    private final UUID userId;
+
+    public CreatedUserEvent(UUID userId, Date date) {
+        super(date);
+        this.userId = userId;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 }

@@ -6,9 +6,13 @@ import com.garyfrancodev.ExpenseManagerApplication.dtos.user.CreateUserDto;
 import java.util.UUID;
 
 public class CreateUserCommand implements Command<UUID> {
-    CreateUserDto createUserDto;
+    private final CreateUserDto createUserDto;
 
     public CreateUserCommand(CreateUserDto createUserDto) {
         this.createUserDto = createUserDto;
+    }
+
+    public CreateUserDto getCreateUserDto() {
+        return createUserDto;
     }
 }

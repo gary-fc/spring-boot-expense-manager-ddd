@@ -11,17 +11,16 @@ public class Category extends AggregateRoot {
     private String categoryDescription;
     private String categoryIcon;
     private CategoryNameValue categoryName;
-    private User user;
-
     private CategoryType categoryType;
+    private UUID userId;
 
-    public Category(String categoryIcon, String categoryName, String categoryDescription, CategoryType categoryType, User user) throws BusinessRuleValidationException {
+    public Category(String categoryIcon, String categoryName, String categoryDescription, CategoryType categoryType, UUID userId) throws BusinessRuleValidationException {
         this.categoryName = new CategoryNameValue(categoryName);
         this.categoryDescription = categoryDescription;
         this.categoryIcon = categoryIcon;
         this.categoryType = categoryType;
         this.id = UUID.randomUUID();
-        this.user = user;
+        this.userId = userId;
     }
 
     public CategoryType getCategoryType() {
@@ -40,7 +39,7 @@ public class Category extends AggregateRoot {
         return categoryDescription;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 }

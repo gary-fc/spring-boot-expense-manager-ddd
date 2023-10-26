@@ -2,8 +2,6 @@ package com.garyfrancodev.ExpenseManagerInfrastructure.model;
 
 import com.garyfrancodev.ExpenseManagerDomain.enums.CategoryType;
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
@@ -20,11 +18,11 @@ public class CategoryJpaModel {
     @Column(nullable = false)
     private String categoryIcon;
 
-    @Column
+    @Column(nullable = false)
     private String categoryDescription;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(nullable = false)
     private CategoryType categoryType;
 
     @ManyToOne

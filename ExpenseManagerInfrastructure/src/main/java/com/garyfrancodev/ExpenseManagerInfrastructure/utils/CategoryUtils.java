@@ -15,7 +15,6 @@ public class CategoryUtils {
         categoryJpaModel.setCategoryDescription(category.getCategoryDescription());
         categoryJpaModel.setCategoryIcon(category.getCategoryIcon());
         categoryJpaModel.setCategoryType(category.getCategoryType());
-        categoryJpaModel.setUser(UserUtils.mapToJpaEntity(category.getUser()));
         return categoryJpaModel;
     }
 
