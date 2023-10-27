@@ -1,10 +1,15 @@
 package com.garyfrancodev.ExpenseManagerInfrastructure.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ManyToAny;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "accounts")
 public class AccountJpaModel {
@@ -14,51 +19,20 @@ public class AccountJpaModel {
 
     @Column(nullable = false)
     private String accountName;
+
     @Column(nullable = false)
     private String description;
+
     @Column(nullable = false)
     private double amount;
 
     @ManyToOne
     private UserJpaModel user;
 
-    public UUID getId() {
-        return id;
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
+    private List<TransactionJpaModel> transactions;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public UserJpaModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserJpaModel user) {
-        this.user = user;
+    public AccountJpaModel() {
+        transactions = new ArrayList<>();
     }
 }

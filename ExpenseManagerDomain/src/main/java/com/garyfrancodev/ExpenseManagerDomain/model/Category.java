@@ -23,6 +23,15 @@ public class Category extends AggregateRoot {
         this.userId = userId;
     }
 
+    public Category(String categoryIcon, String categoryName, String categoryDescription, CategoryType categoryType, UUID userId, UUID id) throws BusinessRuleValidationException {
+        this.categoryName = new CategoryNameValue(categoryName);
+        this.categoryDescription = categoryDescription;
+        this.categoryIcon = categoryIcon;
+        this.categoryType = categoryType;
+        this.userId = userId;
+        this.id = id;
+    }
+
     public CategoryType getCategoryType() {
         return categoryType;
     }

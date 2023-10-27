@@ -1,12 +1,12 @@
 package com.garyfrancodev.ExpenseManagerApi;
 
-import com.garyfrancodev.ExpenseManagerDomain.repositories.AccountRepository;
-import com.garyfrancodev.ExpenseManagerDomain.repositories.CategoryRepository;
-import com.garyfrancodev.ExpenseManagerDomain.repositories.UserRepository;
+import com.garyfrancodev.ExpenseManagerDomain.repositories.*;
 import com.garyfrancodev.ExpenseManagerDomain.services.AuthService;
-import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.account.AccountJpaRepository;
-import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.category.CategoryJpaRepository;
-import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserJpaRepository;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.account.AccountRepositoryImpl;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.category.CategoryRepositoryImpl;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.transaction.TransactionRepositoryImpl;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.transfer.TransferRepositoryImpl;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserRepositoryImpl;
 import com.garyfrancodev.ExpenseManagerInfrastructure.services.AuthServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,21 +39,31 @@ public class ExpenseManagerApiApplication {
 
     @Bean(name = "userRepository")
     public UserRepository userRepository() {
-        return new UserJpaRepository();
+        return new UserRepositoryImpl();
     }
 
     @Bean(name = "categoryRepository")
     public CategoryRepository categoryRepository() {
-        return new CategoryJpaRepository();
+        return new CategoryRepositoryImpl();
     }
 
     @Bean(name = "accountRepository")
     public AccountRepository accountRepository() {
-        return new AccountJpaRepository();
+        return new AccountRepositoryImpl();
+    }
+
+    @Bean(name = "transactionRepository")
+    public TransactionRepository transactionRepository() {
+        return new TransactionRepositoryImpl();
+    }
+
+    @Bean(name = "transferRepository")
+    public TransferRepository transferRepository() {
+        return new TransferRepositoryImpl();
     }
 
     @Bean(name = "authService")
-    public AuthService authService(){
+    public AuthService authService() {
         return new AuthServiceImpl();
     }
 }

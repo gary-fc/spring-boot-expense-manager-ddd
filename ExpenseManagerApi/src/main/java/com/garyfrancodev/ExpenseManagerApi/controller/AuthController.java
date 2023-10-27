@@ -1,10 +1,8 @@
 package com.garyfrancodev.ExpenseManagerApi.controller;
 
 import an.awesome.pipelinr.Pipeline;
-import com.garyfrancodev.ExpenseManagerApplication.dtos.category.CreateCategoryDto;
 import com.garyfrancodev.ExpenseManagerApplication.dtos.user.CreateUserDto;
 import com.garyfrancodev.ExpenseManagerApplication.dtos.user.LoginDto;
-import com.garyfrancodev.ExpenseManagerApplication.use_cases.category.CreateCategoryCommand;
 import com.garyfrancodev.ExpenseManagerApplication.use_cases.user.CreateUserCommand;
 import com.garyfrancodev.ExpenseManagerApplication.use_cases.user.LoginUserCommand;
 import io.swagger.v3.oas.annotations.tags.Tag;

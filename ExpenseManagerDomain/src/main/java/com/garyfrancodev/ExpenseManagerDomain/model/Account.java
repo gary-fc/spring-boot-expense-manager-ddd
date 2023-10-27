@@ -10,6 +10,9 @@ public class Account extends AggregateRoot {
     private double amount;
     private UUID userId;
 
+    public Account(double amount) {
+        this.amount = amount;
+    }
 
     public Account(String accountName, String description, double amount, UUID userId) {
         this.accountName = accountName;
@@ -26,6 +29,16 @@ public class Account extends AggregateRoot {
         this.userId = userId;
         this.id = id;
     }
+    public void updateAmount(Double updateAmount){
+        this.amount = updateAmount;
+    }
+    public void increaseAmount(Double updateAmount){
+        this.amount = this.amount + updateAmount;
+    };
+
+    public void decreaseAmount(Double updateAmount){
+        this.amount = this.amount - updateAmount;
+    };
 
     public String getAccountName() {
         return accountName;

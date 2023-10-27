@@ -16,8 +16,6 @@ public class GetAmountTotalHandler implements Command.Handler<GetAmountTotalQuer
 
     @Override
     public Double handle(GetAmountTotalQuery getAmountTotalQuery) {
-        System.out.println("getAmountTotalQuery.getUserId()");
-        System.out.println(getAmountTotalQuery.getUserId());
         return _accountRepository.GetAmountTotalByUserId(getAmountTotalQuery.getUserId());
     }
 }

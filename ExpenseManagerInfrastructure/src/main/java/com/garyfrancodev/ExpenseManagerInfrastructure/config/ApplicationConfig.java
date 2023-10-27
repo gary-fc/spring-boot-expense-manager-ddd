@@ -1,6 +1,6 @@
 package com.garyfrancodev.ExpenseManagerInfrastructure.config;
 
-import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserCrudRepository;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class ApplicationConfig {
     @Autowired
-    private UserCrudRepository userRepository;
+    private UserJpaRepository userRepository;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

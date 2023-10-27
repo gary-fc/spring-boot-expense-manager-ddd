@@ -1,12 +1,10 @@
 package com.garyfrancodev.ExpenseManagerInfrastructure.services;
 
-import com.garyfrancodev.ExpenseManagerDomain.factories.user.CreateUser;
-import com.garyfrancodev.ExpenseManagerDomain.factories.user.UserFactory;
 import com.garyfrancodev.ExpenseManagerDomain.model.User;
 import com.garyfrancodev.ExpenseManagerDomain.services.AuthService;
 import com.garyfrancodev.ExpenseManagerInfrastructure.jwt.JwtService;
 import com.garyfrancodev.ExpenseManagerInfrastructure.model.UserJpaModel;
-import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserCrudRepository;
+import com.garyfrancodev.ExpenseManagerInfrastructure.repositories.user.UserJpaRepository;
 import com.garyfrancodev.ExpenseManagerInfrastructure.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +26,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private UserCrudRepository userRepository;
-    private final UserFactory userFactory;
-
-    public AuthServiceImpl() {
-        this.userFactory = new CreateUser();
-    }
+    private UserJpaRepository userRepository;
 
     @Override
     public ResponseEntity<Map<String, String>> login(String email, String password) {
@@ -42,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
         Map<String, String> body = new HashMap<>();
 
         if (userDetails.isPresent()) {
-            User user = this.userFactory.create(userDetails.get().getFirstName(), userDetails.get().getLastName(), userDetails.get().getEmail(), userDetails.get().getPassword());
+            User user = new User(userDetails.get().getFirstName(), userDetails.get().getLastName(), userDetails.get().getEmail(), userDetails.get().getPassword(), userDetails.get().getId());
             body.put("jwt", jwtService.getToken(user));
             body.put("userId", userDetails.get().getId().toString());
 

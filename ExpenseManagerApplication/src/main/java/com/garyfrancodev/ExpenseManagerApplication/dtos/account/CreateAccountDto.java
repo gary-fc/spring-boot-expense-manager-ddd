@@ -16,5 +16,4 @@ public class CreateAccountDto {
     public String description;
     public double amount;
     private UUID userId;
-
 }

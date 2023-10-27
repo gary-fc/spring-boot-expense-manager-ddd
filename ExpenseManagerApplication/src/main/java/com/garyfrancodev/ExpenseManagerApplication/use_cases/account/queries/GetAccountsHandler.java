@@ -22,9 +22,12 @@ public class GetAccountsHandler implements Command.Handler<GetAccountsQuery, Lis
 
     @Override
     public List<AccountDto> handle(GetAccountsQuery getAccountsQuery) {
-        System.out.println("get");
-        System.out.println(getAccountsQuery.getUserId());
         List<Account> accounts = _accountRepository.findAccountsByUserId(getAccountsQuery.getUserId());
+        System.out.println("accounts.get(0).getUserId()");
+        System.out.println(accounts.get(0).getUserId());
+        List<AccountDto> accountDtos = accounts.stream().map(account -> new AccountDto(account.getAccountName(), account.getDescription(), account.getAmount(), account.getUserId(), account.getId())).toList();
+        System.out.println("asdasd");
+        System.out.println(accountDtos.get(0).getUserId());
         return accounts.stream().map(account -> new AccountDto(account.getAccountName(), account.getDescription(), account.getAmount(), account.getUserId(), account.getId())).toList();
     }
 }

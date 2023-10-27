@@ -3,6 +3,7 @@ package com.garyfrancodev.ExpenseManagerInfrastructure.model;
 import com.garyfrancodev.ExpenseManagerDomain.enums.CategoryType;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +28,9 @@ public class CategoryJpaModel {
 
     @ManyToOne
     private UserJpaModel user;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TransactionJpaModel> transactions;
 
     public CategoryType getCategoryType() {
         return categoryType;
